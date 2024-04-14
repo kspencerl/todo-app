@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.labdesoft.roteiro01.entity.Task;
 import com.labdesoft.roteiro01.entity.TaskStatus;
+import com.labdesoft.roteiro01.entity.TaskType;
 import com.labdesoft.roteiro01.service.TaskService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,29 +27,8 @@ public class TaskController {
         return ResponseEntity.ok().body(tasks);
     }
 
-    @GetMapping("/{status}")
-    @Operation(summary = "Lista todas as tarefas da lista de um status específico")
-    public ResponseEntity<List<Task>> findTasksByStatus(@PathVariable TaskStatus status) {
-        List<Task> tasks = taskService.getTasksByStatus(status);
-        return ResponseEntity.ok().body(tasks);
-    }
-
-    @GetMapping("/byLabel/{labelName}")
-    @Operation(summary = "Lista todas as tarefas com uma label específica")
-    public ResponseEntity<List<Task>> findTasksByLabel(@PathVariable String labelName) {
-        List<Task> tasks = taskService.getTasksByLabel(labelName);
-        return ResponseEntity.ok().body(tasks);
-    }
-
-    @GetMapping("/byCategory/{categoryName}")
-    @Operation(summary = "Lista todas as tarefas com uma categoria específica")
-    public ResponseEntity<List<Task>> findTasksByCategory(@PathVariable String categoryName) {
-        List<Task> tasks = taskService.getTasksByCategory(categoryName);
-        return ResponseEntity.ok().body(tasks);
-    }
-
     @GetMapping("/{id}")
-    @Operation(summary = "Lista uma tarefa específica")
+    @Operation(summary = "Listar tarefa específica")
     public ResponseEntity<Task> findTaskById(@PathVariable Long id) {
         Task task = taskService.getTaskById(id);
         if (task != null) {
@@ -59,14 +39,14 @@ public class TaskController {
     }
 
     @PostMapping("/add")
-    @Operation(summary = "Adiciona uma nova tarefa")
+    @Operation(summary = "Adicionar nova tarefa")
     public ResponseEntity<Task> addTask(@RequestBody Task task) {
         Task addedTask = taskService.addTask(task);
         return ResponseEntity.ok().body(addedTask);
     }
 
     @PutMapping("/update/{id}")
-    @Operation(summary = "Atualiza uma tarefa existente")
+    @Operation(summary = "Atualizar tarefa existente")
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
         Task updatedTask = taskService.updateTask(id, task);
         if (updatedTask != null) {
@@ -77,7 +57,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @Operation(summary = "Exclui uma tarefa existente")
+    @Operation(summary = "Excluir tarefa existente")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();

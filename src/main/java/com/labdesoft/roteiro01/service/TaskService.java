@@ -19,17 +19,6 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public List<Task> getTasksByStatus(TaskStatus status) {
-        return taskRepository.findByStatus(status);
-    }
-
-    public List<Task> getTasksByLabel(String labelName) {
-        return taskRepository.findByLabel_Name(labelName);
-    }
-
-    public List<Task> getTasksByCategory(String categoryName) {
-        return taskRepository.findByCategoryName(categoryName);
-    }
 
     public Task getTaskById(Long id) {
         return taskRepository.findById(id).orElse(null);
@@ -40,8 +29,8 @@ public class TaskService {
         if (existingTask != null) {
             existingTask.setName(task.getName());
             existingTask.setPriority(task.getPriority());
-            existingTask.setLabel(task.getLabel());
-            existingTask.setCategory(task.getCategory());
+            existingTask.setStatus(task.getStatus());
+            existingTask.setType(task.getType());
             existingTask.setDueDate(task.getDueDate());
             existingTask.setStatus(task.getStatus());
             

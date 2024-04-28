@@ -7,8 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.labdesoft.roteiro01.entity.Task;
-import com.labdesoft.roteiro01.entity.TaskStatus;
-import com.labdesoft.roteiro01.entity.TaskType;
 import com.labdesoft.roteiro01.service.TaskService;
 
 import io.swagger.v3.oas.annotations.Operation;

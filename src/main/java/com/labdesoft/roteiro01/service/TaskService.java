@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.labdesoft.roteiro01.entity.Task;
-import com.labdesoft.roteiro01.entity.TaskStatus;
 import com.labdesoft.roteiro01.repository.TaskRepository;
 
 @Service
@@ -30,7 +29,6 @@ public class TaskService {
             existingTask.setName(task.getName());
             existingTask.setPriority(task.getPriority());
             existingTask.setStatus(task.getStatus());
-            existingTask.setType(task.getType());
             existingTask.setDueDate(task.getDueDate());
             existingTask.setStatus(task.getStatus());
             

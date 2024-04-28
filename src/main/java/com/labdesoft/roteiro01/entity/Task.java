@@ -29,10 +29,6 @@ public class Task {
     @Column(name="due_date", updatable = true, nullable = true)
     private LocalDateTime dueDate;
 
-    @Column(name="type", updatable = true)
-    @Enumerated(EnumType.STRING)
-    private TaskType type;
-
     @Column(name="priority", updatable = true)
     @Enumerated(EnumType.STRING)
     private TaskPriority priority;

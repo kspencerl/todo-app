@@ -1,0 +1,16 @@
+@startuml Diagrama de contexto do sistema
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(user, "Usuário")
+System_Boundary(app, "Aplicação web") {
+    Container(backend, "Backend", "Java, Spring Boot", "Gerenciamento de tarefas")
+    ContainerDb(database, "Banco de dados", "PostgreSQL", "Armazena as informações da aplicação", $sprite="msql_server")
+}
+System(todo_list, "Lista de tarefas")
+
+Rel(user, todo_list, "Utiliza", "HTTPS")
+Rel(todo_list, backend, "Requisições na API")
+Rel(backend, database, "Acessa dados")
+Rel(database, backend, "Retorna informações")
+
+@enduml

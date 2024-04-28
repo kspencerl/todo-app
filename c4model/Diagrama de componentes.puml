@@ -1,0 +1,17 @@
+@startuml Diagrama de componentes
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+System_Boundary(app, "API") {
+    Container(task_controller, "Task Controller", "Rest Controller", "Camada que recebe as requisições do usuário")
+    Container(repository, "Repository", "JPA", "Camada de mediação entre a lógica de negócios e o acesso a dados")
+}
+    Container(todo_list, "Todo List", "Javascript, HTML, CSS", "Aplicação front-end para gerenciamento de tarefas")
+    ContainerDb(database, "Banco de dados", "PostgreSQL", "Armazenar informações")
+
+Rel(todo_list, task_controller, "Requisições na API")
+Rel(task_controller, repository, "Utiliza")
+Rel(repository, database, "Acessa dados")
+Rel(database, repository, "Retorna dados")
+
+@enduml

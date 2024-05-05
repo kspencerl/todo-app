@@ -1,0 +1,18 @@
+@startuml Diagrama de container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+Person(user, "Usuário")
+System_Boundary(app, "Aplicação web") {
+    ContainerDb(databse, "Banco de dados", "Container: PostgreSQL", "Armazenar dados")
+    Container(todo_list, "Todo list", "HTML, CSS, Javascript", "Frontend do Todo-list para gerenciar tarefas")
+    Container(api, "API", "Java 21, Spring Boot", "Endpoints para criar, alterar, deletar e gerenciar tarefas")
+}
+
+Rel(user, todo_list, "Acessa")
+Rel(todo_list, api, "Requisições")
+Rel(api, databse, "Acessa dados")
+Rel(databse, api, "Retorna dados")
+
+
+@enduml

@@ -18,7 +18,7 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @GetMapping("/all")
+    @GetMapping
     @Operation(summary = "Lista todas as tarefas existentes.")
     public ResponseEntity<List<Task>> findAllTasks() {
         List<Task> tasks = taskService.getAllTasks();
